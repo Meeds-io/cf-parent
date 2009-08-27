@@ -1,0 +1,615 @@
+<!--
+
+    Copyright (C) 2009 eXo Platform SAS.
+
+    This is free software; you can redistribute it and/or modify it
+    under the terms of the GNU Lesser General Public License as
+    published by the Free Software Foundation; either version 2.1 of
+    the License, or (at your option) any later version.
+
+    This software is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this software; if not, write to the Free
+    Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+    02110-1301 USA, or see the FSF site: http://www.fsf.org.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>org.jboss</groupId>
+      <artifactId>jboss-parent</artifactId>
+      <version>5-beta-1</version>
+   </parent>
+   <groupId>org.exoplatform</groupId>
+   <artifactId>foundation-parent</artifactId>
+   <version>2-SNAPSHOT</version>
+   <packaging>pom</packaging>
+
+   <name>eXo JBoss Parent</name>
+
+   <organization>
+      <name>eXo Platform SAS</name>
+      <url>http://www.exoplatform.com</url>
+   </organization>
+
+   <scm>
+      <connection>scm:svn:http://svn.exoplatform.org/projects/exorh/exo-jcr/parent/trunk/</connection>
+      <developerConnection>scm:svn:http://svn.exoplatform.org/projects/exorh/exo-jcr/parent/trunk/</developerConnection>
+      <url>http://fisheye.exoplatform.org/browse/projects-internal/exorh/exo-jcr/parent/trunk/</url>
+   </scm>
+
+   <distributionManagement>
+      <repository>
+         <id>exo-releases</id>
+         <name>exo releases</name>
+         <url>http://archiva.exoplatform.org/archiva/repository/exo-releases</url>
+      </repository>
+   </distributionManagement>
+
+   <!-- Hudson to parse poms before the build do not use our settings  -->
+   <repositories>
+      <repository>
+         <id>jboss.com</id>
+         <url>http://repository.jboss.com/maven2</url>
+      </repository>
+      <repository>
+         <id>exo-int</id>
+         <name>exoplatform.org internal repository</name>
+         <url>http://maven2.exoplatform.org/rest/maven2</url>
+      </repository>
+      <repository>
+         <id>repo.jfrog.org-releases</id>
+         <name>repo.jfrog.org-releases</name>
+         <url>http://repo.jfrog.org/artifactory/plugins-releases-local</url>
+      </repository>
+      <repository>
+         <id>download.java.net</id>
+         <name>download.java.net repository</name>
+         <url>http://download.java.net/maven/2</url>
+      </repository>
+   </repositories>
+   <pluginRepositories>
+      <pluginRepository>
+         <id>jboss.com</id>
+         <url>http://repository.jboss.com/maven2</url>
+      </pluginRepository>
+      <pluginRepository>
+         <id>exo-int</id>
+         <name>exoplatform.org internal repository</name>
+         <url>http://maven2.exoplatform.org/rest/maven2</url>
+      </pluginRepository>
+      <pluginRepository>
+         <id>repo.jfrog.org-releases</id>
+         <name>repo.jfrog.org-releases</name>
+         <url>http://repo.jfrog.org/artifactory/plugins-releases-local</url>
+      </pluginRepository>
+      <pluginRepository>
+         <id>download.java.net</id>
+         <name>download.java.net repository</name>
+         <url>http://download.java.net/maven/2</url>
+      </pluginRepository>
+      <!-- Used for maven-license-plugin -->
+      <pluginRepository>
+         <id>mc-release</id>
+         <name>Local Maven repository of releases</name>
+         <url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
+      </pluginRepository>
+   </pluginRepositories>
+
+   <properties>
+      <exo.projects.directory.base>D:/java</exo.projects.directory.base>
+      <exo.projects.directory.dependencies>${exo.projects.directory.base}/exo-dependencies</exo.projects.directory.dependencies>
+      <exo.projects.directory.working>${exo.projects.directory.base}/exo-working</exo.projects.directory.working>
+
+      <exo.projects.app.mvn.repo>${exo.projects.directory.dependencies}/repository</exo.projects.app.mvn.repo>
+      
+      <exo.projects.app.tomcat.version>tomcat-6.0.16</exo.projects.app.tomcat.version>
+      <exo.projects.app.jboss.version>jboss-4.2.0.GA</exo.projects.app.jboss.version>
+      <exo.projects.app.jonas.version>JONAS_4_8_5</exo.projects.app.jonas.version>
+      
+      <exo.dev.resources.version>1.1.0</exo.dev.resources.version>
+   
+      <exo.product.name>eXo Platform</exo.product.name>
+      <exo.product.specification>N/A</exo.product.specification>
+
+      <!-- Default tests settings -->
+      <maven.test.skip>false</maven.test.skip>
+      <forkMode>once</forkMode>
+      <maven.test.failure.ignore>false</maven.test.failure.ignore>
+      <surefire.useFile>true</surefire.useFile>
+      <exo.test.includes>Test*</exo.test.includes>
+      
+      <!-- Defaut compiler settings -->
+      <maven.compiler.optimize>true</maven.compiler.optimize>
+      <maven.compiler.source>1.5</maven.compiler.source>
+      <maven.compiler.target>1.5</maven.compiler.target>
+      
+      <!-- Encoding used for files in the project -->
+      <!-- Standard property supported by many plugins : compiler, resources, ... -->
+      <!-- Will be an entry in the POM in the future -->
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      
+      <!-- Plugins versions are defined in propertiesto reuse them between build and reporting parts if necessary -->
+      <assembly.plugin.version>2.2-beta-4</assembly.plugin.version>
+      <buildnumber.plugin.version>1.0-beta-3</buildnumber.plugin.version>
+      <clean.plugin.version>2.3</clean.plugin.version>
+      <checkstyle.plugin.version>2.3</checkstyle.plugin.version>
+      <compiler.plugin.version>2.0.2</compiler.plugin.version>
+      <ear.plugin.version>2.3.2</ear.plugin.version>
+      <enforcer.plugin.version>1.0-beta-1</enforcer.plugin.version>
+      <install.plugin.version>2.3</install.plugin.version>
+      <javacc.plugin.version>2.5</javacc.plugin.version>
+      <javadoc.plugin.version>2.6</javadoc.plugin.version>
+      <jaxb2.plugin.version>0.1</jaxb2.plugin.version>
+      <jibx.plugin.version>1.2.1</jibx.plugin.version>
+      <project.info.reports.plugin.version>2.1.2</project.info.reports.plugin.version>
+      <release.plugin.version>2.0-beta-9</release.plugin.version>
+      <site.plugin.version>2.0.1</site.plugin.version>
+      <surefire.plugin.version>2.4.3</surefire.plugin.version>
+      <surefire.report.plugin.version>2.4.3</surefire.report.plugin.version>
+      <taglist.plugin.version>2.3</taglist.plugin.version>
+      <war.plugin.version>2.1-beta-1</war.plugin.version>
+   </properties>
+
+   <dependencyManagement>
+      <dependencies>
+         <!--  Use the same version of JUnit everywhere -->
+         <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.2</version>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
+
+   <build>
+      <defaultGoal>install</defaultGoal>
+      <pluginManagement>
+         <plugins>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-clean-plugin</artifactId>
+               <version>${clean.plugin.version}</version>
+            </plugin>
+            <!-- Compilation Plugin Configuration -->
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-compiler-plugin</artifactId>
+               <version>${compiler.plugin.version}</version>
+            </plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-enforcer-plugin</artifactId>
+               <version>${enforcer.plugin.version}</version>
+            </plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-install-plugin</artifactId>
+               <version>${install.plugin.version}</version>
+            </plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-jar-plugin</artifactId>
+               <!-- Version from JBoss -->
+               <configuration>
+                  <archive>
+                     <!-- Manifest management -->
+                     <manifestEntries>
+                        <SCM-URL>${project.scm.connection}</SCM-URL>
+                        <Specification-Title>${exo.product.name}</Specification-Title>
+                        <Specification-Version>${exo.product.specification}</Specification-Version>
+                        <Specification-Vendor>${project.organization.name}</Specification-Vendor>
+                        <Implementation-Title>${project.name}</Implementation-Title>
+                        <Implementation-Version>${project.version}</Implementation-Version>
+                        <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+                     </manifestEntries>
+                  </archive>
+               </configuration>
+            </plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-release-plugin</artifactId>
+               <version>${release.plugin.version}</version>
+               <configuration>
+                  <arguments>-Dmaven.test.skip=true</arguments>
+                  <autoVersionSubmodules>true</autoVersionSubmodules>
+                  <goals>install</goals>
+               </configuration>
+            </plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-site-plugin</artifactId>
+               <version>${site.plugin.version}</version>
+            </plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-source-plugin</artifactId>
+               <!-- Version from JBoss -->            
+               <configuration>
+                  <!-- This is a workaroud for MSOURCES-44 -->
+                  <includePom>true</includePom>
+               </configuration>
+            </plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-surefire-plugin</artifactId>
+               <version>${surefire.plugin.version}</version>
+               <configuration>
+                  <includes>
+                     <include>**/${exo.test.includes}.java</include>
+                  </includes>
+               </configuration>
+            </plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-war-plugin</artifactId>
+               <version>${war.plugin.version}</version>
+               <configuration>
+                  <archive>
+                     <manifestEntries>
+                        <SCM-URL>${project.scm.connection}</SCM-URL>
+                        <Specification-Title>${exo.product.name}</Specification-Title>
+                        <Specification-Version>${exo.product.specification}</Specification-Version>
+                        <Specification-Vendor>${project.organization.name}</Specification-Vendor>
+                        <Implementation-Title>${project.name}</Implementation-Title>
+                        <Implementation-Version>${project.version}</Implementation-Version>
+                        <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+                     </manifestEntries>
+                  </archive>
+               </configuration>
+            </plugin>
+            <plugin>
+               <groupId>org.codehaus.mojo</groupId>
+               <artifactId>buildnumber-maven-plugin</artifactId>
+               <version>${buildnumber.plugin.version}</version>
+            </plugin>
+            <plugin>
+               <groupId>org.codehaus.mojo</groupId>
+               <artifactId>javacc-maven-plugin</artifactId>
+               <version>${javacc.plugin.version}</version>
+            </plugin>
+            <plugin>
+               <groupId>org.jibx</groupId>
+               <artifactId>maven-jibx-plugin</artifactId>
+               <version>${jibx.plugin.version}</version>
+            </plugin>
+            <plugin>
+               <groupId>org.jvnet.jaxb2.maven2</groupId>
+               <artifactId>maven-jaxb2-plugin</artifactId>
+               <version>${jaxb2.plugin.version}</version>
+            </plugin>
+            <plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-checkstyle-plugin</artifactId>
+            	<version>${checkstyle.plugin.version}</version>
+            </plugin>
+            <plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-javadoc-plugin</artifactId>
+            	<version>${javadoc.plugin.version}</version>
+            </plugin>
+            <plugin>
+            	<groupId>org.codehaus.mojo</groupId>
+            	<artifactId>taglist-maven-plugin</artifactId>
+            	<version>${taglist.plugin.version}</version>
+            </plugin>
+            <plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-ear-plugin</artifactId>
+            	<version>${ear.plugin.version}</version>
+            </plugin>
+            <plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-assembly-plugin</artifactId>
+            	<version>${assembly.plugin.version}</version>
+            </plugin>
+         </plugins>
+      </pluginManagement>
+   </build>
+
+   <!-- Override default reports from JBoss to use properties for plugins versions -->
+   <reporting>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-project-info-reports-plugin</artifactId>
+            <version>${project.info.reports.plugin.version}</version>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${javadoc.plugin.version}</version>
+            <configuration>
+               <aggregate>true</aggregate>
+               <reportOutputDirectory>${project.build.directory}/javadoc</reportOutputDirectory>
+               <maxmemory>512m</maxmemory>
+               <minmemory>256m</minmemory>
+            </configuration>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-report-plugin</artifactId>
+            <version>${surefire.report.plugin.version}</version>
+         </plugin>
+         <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>taglist-maven-plugin</artifactId>
+            <version>${taglist.plugin.version}</version>
+         </plugin>
+      </plugins>
+   </reporting>   
+
+   <profiles>
+      <profile>
+        <id>checkstyle</id>
+      	<build>
+      		<plugins>
+      			<plugin>
+      				<groupId>org.apache.maven.plugins</groupId>
+      				<artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${checkstyle.plugin.version}</version>
+      				<dependencies>
+      					<dependency>
+      						<groupId>org.exoplatform.tools</groupId>
+      						<artifactId>dev-resources</artifactId>
+      						<version>${exo.dev.resources.version}</version>
+      					</dependency>
+      				</dependencies>
+      				<executions>
+      					<execution>
+      						<phase>verify</phase>
+      						<goals>
+      							<goal>check</goal>
+      						</goals>
+      					</execution>
+      				</executions>
+      			</plugin>
+      		</plugins>
+      	</build>
+      	<reporting>
+      		<plugins>
+      			<plugin>
+      				<groupId>org.apache.maven.plugins</groupId>
+      				<artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${checkstyle.plugin.version}</version>
+      				<configuration>
+      					<violationSeverity>warning</violationSeverity>
+      					<configLocation>checkstyle/codestyle.xml</configLocation>
+      					<headerLocation>checkstyle/java.header</headerLocation>
+      				</configuration>
+      			</plugin>
+      		</plugins>
+      	</reporting>
+      </profile>
+      <profile>
+         <id>release</id>
+         <build>
+            <pluginManagement>
+               <plugins>
+                  <!-- Manifest management -->
+                  <plugin>
+                     <groupId>org.apache.maven.plugins</groupId>
+                     <artifactId>maven-war-plugin</artifactId>
+                     <configuration>
+                        <archive>
+                           <manifestEntries>
+                              <SCM-Revision>${buildNumber}</SCM-Revision>
+                              <SCM-URL>${project.scm.connection}</SCM-URL>
+                              <Specification-Title>${exo.product.name}</Specification-Title>
+                              <Specification-Version>${exo.product.specification}</Specification-Version>
+                              <Specification-Vendor>${project.organization.name}</Specification-Vendor>
+                              <Implementation-Title>${project.name}</Implementation-Title>
+                              <Implementation-Version>${project.version}</Implementation-Version>
+                              <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+                           </manifestEntries>
+                        </archive>
+                     </configuration>
+                  </plugin>
+
+                  <!-- Manifest management -->
+                  <plugin>
+                     <groupId>org.apache.maven.plugins</groupId>
+                     <artifactId>maven-jar-plugin</artifactId>
+                     <configuration>
+                        <archive>
+                           <manifestEntries>
+                              <SCM-Revision>${buildNumber}</SCM-Revision>
+                              <SCM-URL>${project.scm.connection}</SCM-URL>
+                              <Specification-Title>${exo.product.name}</Specification-Title>
+                              <Specification-Version>${exo.product.specification}</Specification-Version>
+                              <Specification-Vendor>${project.organization.name}</Specification-Vendor>
+                              <Implementation-Title>${project.name}</Implementation-Title>
+                              <Implementation-Version>${project.version}</Implementation-Version>
+                              <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+                           </manifestEntries>
+                        </archive>
+                     </configuration>
+                  </plugin>
+               </plugins>
+            </pluginManagement>
+            <plugins>
+               <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>buildnumber-maven-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <phase>validate</phase>
+                        <goals>
+                           <goal>create</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+                  <configuration>
+                     <doCheck>false</doCheck>
+                     <doUpdate>false</doUpdate>
+                  </configuration>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+      <profile>
+         <id>tomcat-server</id>
+         <activation>
+            <property>
+               <name>tomcat</name>
+            </property>
+            <activeByDefault>false</activeByDefault>
+         </activation>
+      </profile>   
+      <profile>
+         <id>jboss-server</id>
+         <activation>
+            <property>
+               <name>jboss-server</name>
+            </property>
+            <activeByDefault>false</activeByDefault>
+         </activation>
+      </profile>
+      <profile>
+         <id>jonas-server</id>
+         <activation>
+            <property>
+               <name>jonas-server</name>
+            </property>
+            <activeByDefault>false</activeByDefault>
+         </activation>
+      </profile>
+      <profile>
+         <id>jmeter-perftest</id>
+         <activation>
+            <property>
+               <name>jmeter-perftest</name>
+            </property>
+            <activeByDefault>false</activeByDefault>
+         </activation>
+      </profile>
+      
+      <!-- Tests coverage with emma -->
+      <profile>
+         <id>emma</id>
+         <properties>
+            <maven.test.failure.ignore>true</maven.test.failure.ignore>  
+         </properties>
+         <build>
+            <pluginManagement>
+               <plugins>
+                  <plugin>
+                     <groupId>org.apache.maven.plugins</groupId>
+                     <artifactId>maven-surefire-plugin</artifactId>
+                     <configuration>
+                        <systemProperties>
+                           <property>
+                              <name>emma.coverage.out.file</name>
+                              <value>target/emma/coverage.ec</value>
+                           </property>
+                        </systemProperties>
+                     </configuration>
+                  </plugin>
+               </plugins>
+            </pluginManagement>
+            <plugins>
+               <plugin>
+                  <artifactId>maven-antrun-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <id>emma1</id>
+                        <phase>test-compile</phase>
+                        <configuration>
+                           <tasks if="emma.run">
+                              <echo message="[EMMA] Start classes instrumentation ..." />
+                              <taskdef resource="emma_ant.properties" classpathref="maven.dependency.classpath" />
+                              <mkdir dir="target" />
+                              <mkdir dir="target/classes" />
+                              <mkdir dir="target/emma/classes" />
+                              <!-- Do nothing if the directory already exist-->
+                              <copy todir="target/emma/classes" verbose="false" overwrite="true">
+                                 <fileset dir="target/classes" />
+                              </copy>
+                              <emma enabled="true">
+                                 <instr mode="overwrite" metadatafile="target/emma/metadata.em">
+                                    <filter excludes="*.xml.*" />
+                                    <filter excludes="*JiBX*" />
+                                    <filter excludes="*Entry*" />
+                                    <filter excludes="*Value*" />
+                                    <filter excludes="*RepositoryServiceConfiguration*" />
+                                    <filter excludes="*.query*" />
+
+                                    <instrpath>
+                                       <dirset dir="target">
+                                          <include name="emma/classes" />
+                                       </dirset>
+                                    </instrpath>
+                                 </instr>
+                              </emma>
+                           </tasks>
+                        </configuration>
+                        <goals>
+                           <goal>run</goal>
+                        </goals>
+                     </execution>
+                     <execution>
+                        <id>emma2</id>
+                        <phase>test</phase>
+                        <configuration>
+                           <tasks if="emma.run">
+                              <echo message="[EMMA] Start report generation..." />
+                              <taskdef resource="emma_ant.properties" classpathref="maven.dependency.classpath" />
+                              <emma enabled="true">
+                                 <!-- merged file will be rewritted by last project -->
+                                 <merge outfile="target/coverage.es">
+                                    <fileset dir=".">
+                                       <include name="**/target/emma/*.e*" />
+                                       <include name="**/target/emma/*.e*" />
+                                    </fileset>
+                                 </merge>
+                                 <report>
+                                    <sourcepath>
+                                       <dirset dir=".">
+                                          <include name="**/src/**/java" />
+                                       </dirset>
+                                    </sourcepath>
+                                    <fileset dir="target/">
+                                       <include name="*.es" />
+                                    </fileset>
+                                    <html outfile="target/coverage.html" />
+                                    <xml outfile="target/coverage.xml" />
+                                 </report>
+                              </emma>
+                           </tasks>
+                        </configuration>
+                        <goals>
+                           <goal>run</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+                  <dependencies>
+                     <dependency>
+                        <groupId>emma</groupId>
+                        <artifactId>emma</artifactId>
+                        <version>2.0.5312</version>
+                     </dependency>
+                     <dependency>
+                        <groupId>emma</groupId>
+                        <artifactId>emma_ant</artifactId>
+                        <version>2.0.5312</version>
+                     </dependency>
+                  </dependencies>
+               </plugin>
+            </plugins>
+         </build>
+         <dependencies>
+            <dependency>
+               <groupId>emma</groupId>
+               <artifactId>emma</artifactId>
+               <version>2.0.5312</version>
+               <scope>test</scope>
+            </dependency>
+         </dependencies>
+      </profile>
+   </profiles>
+</project>
