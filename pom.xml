@@ -36,6 +36,13 @@
       <name>eXo Platform SAS</name>
       <url>http://www.exoplatform.com</url>
    </organization>
+   
+   <licenses>
+      <license>
+         <name>LGPL, version 2.1</name>
+         <url>http://www.opensource.org/licenses/lgpl-license.php</url>
+      </license>
+   </licenses>
 
    <scm>
       <connection>scm:svn:http://svn.exoplatform.org/projects/exorh/exo-jcr/parent/trunk/</connection>
