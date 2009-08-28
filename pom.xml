@@ -341,49 +341,49 @@
             <version>${taglist.plugin.version}</version>
          </plugin>
       </plugins>
-   </reporting>   
+   </reporting>
 
    <profiles>
       <profile>
-        <id>checkstyle</id>
-      	<build>
-      		<plugins>
-      			<plugin>
-      				<groupId>org.apache.maven.plugins</groupId>
-      				<artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>${checkstyle.plugin.version}</version>
-      				<dependencies>
-      					<dependency>
-      						<groupId>org.exoplatform.tool</groupId>
-      						<artifactId>dev-resources</artifactId>
-      						<version>${exo.dev.resources.version}</version>
-      					</dependency>
-      				</dependencies>
-      				<executions>
-      					<execution>
-      						<phase>verify</phase>
-      						<goals>
-      							<goal>check</goal>
-      						</goals>
-      					</execution>
-      				</executions>
-      			</plugin>
-      		</plugins>
-      	</build>
-      	<reporting>
-      		<plugins>
-      			<plugin>
-      				<groupId>org.apache.maven.plugins</groupId>
-      				<artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>${checkstyle.plugin.version}</version>
-      				<configuration>
-      					<violationSeverity>warning</violationSeverity>
-      					<configLocation>checkstyle/codestyle.xml</configLocation>
-      					<headerLocation>checkstyle/java.header</headerLocation>
-      				</configuration>
-      			</plugin>
-      		</plugins>
-      	</reporting>
+         <id>checkstyle</id>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-checkstyle-plugin</artifactId>
+                  <version>${checkstyle.plugin.version}</version>
+                  <dependencies>
+                     <dependency>
+                        <groupId>org.exoplatform.tool</groupId>
+                        <artifactId>dev-resources</artifactId>
+                        <version>${exo.dev.resources.version}</version>
+                     </dependency>
+                  </dependencies>
+                  <executions>
+                     <execution>
+                        <phase>verify</phase>
+                        <goals>
+                           <goal>check</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+               </plugin>
+            </plugins>
+         </build>
+         <reporting>
+            <plugins>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-checkstyle-plugin</artifactId>
+                  <version>${checkstyle.plugin.version}</version>
+                  <configuration>
+                     <violationSeverity>warning</violationSeverity>
+                     <configLocation>checkstyle/codestyle.xml</configLocation>
+                     <headerLocation>checkstyle/java.header</headerLocation>
+                  </configuration>
+               </plugin>
+            </plugins>
+         </reporting>
       </profile>
       <profile>
          <id>release</id>
@@ -459,7 +459,7 @@
             </property>
             <activeByDefault>false</activeByDefault>
          </activation>
-      </profile>   
+      </profile>
       <profile>
          <id>jboss-server</id>
          <activation>
@@ -487,12 +487,12 @@
             <activeByDefault>false</activeByDefault>
          </activation>
       </profile>
-      
+
       <!-- Tests coverage with emma -->
       <profile>
          <id>emma</id>
          <properties>
-            <maven.test.failure.ignore>true</maven.test.failure.ignore>  
+            <maven.test.failure.ignore>true</maven.test.failure.ignore>
          </properties>
          <build>
             <pluginManagement>
