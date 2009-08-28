@@ -50,14 +50,6 @@
       <url>http://fisheye.exoplatform.org/browse/projects-internal/exorh/exo-jcr/parent/trunk/</url>
    </scm>
 
-   <distributionManagement>
-      <repository>
-         <id>exo-releases</id>
-         <name>exo releases</name>
-         <url>http://archiva.exoplatform.org/archiva/repository/exo-releases</url>
-      </repository>
-   </distributionManagement>
-
    <!-- Hudson to parse poms before the build do not use our settings  -->
    <repositories>
       <repository>
