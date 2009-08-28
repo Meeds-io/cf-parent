@@ -354,7 +354,7 @@
                     <version>${checkstyle.plugin.version}</version>
       				<dependencies>
       					<dependency>
-      						<groupId>org.exoplatform.tools</groupId>
+      						<groupId>org.exoplatform.tool</groupId>
       						<artifactId>dev-resources</artifactId>
       						<version>${exo.dev.resources.version}</version>
       					</dependency>
