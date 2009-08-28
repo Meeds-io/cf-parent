@@ -111,7 +111,7 @@
       <exo.projects.app.jboss.version>jboss-4.2.3.GA</exo.projects.app.jboss.version>
       <exo.projects.app.jonas.version>JONAS_4_8_5</exo.projects.app.jonas.version>
       
-      <exo.dev.resources.version>1.1.0</exo.dev.resources.version>
+      <exo.dev.resources.version>1.2.0</exo.dev.resources.version>
    
       <exo.product.name>eXo Platform</exo.product.name>
       <exo.product.specification>N/A</exo.product.specification>
