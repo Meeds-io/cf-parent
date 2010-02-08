@@ -147,25 +147,6 @@
       <javacc.plugin.version>2.5</javacc.plugin.version>
       <jaxb2.plugin.version>0.1</jaxb2.plugin.version>
 
-      <!-- 
-      <assembly.plugin.version>2.2-beta-4</assembly.plugin.version>
-      <buildnumber.plugin.version>1.0-beta-3</buildnumber.plugin.version>
-      <clean.plugin.version>2.3</clean.plugin.version>
-      <checkstyle.plugin.version>2.3</checkstyle.plugin.version>
-      <compiler.plugin.version>2.0.2</compiler.plugin.version>
-      <ear.plugin.version>2.3.2</ear.plugin.version>
-      <enforcer.plugin.version>1.0-beta-1</enforcer.plugin.version>
-      <install.plugin.version>2.3</install.plugin.version>
-      <jar.plugin.version>2.2</jar.plugin.version>
-      <javadoc.plugin.version>2.6</javadoc.plugin.version>
-      <project.info.reports.plugin.version>2.1.2</project.info.reports.plugin.version>
-      <release.plugin.version>2.0-beta-9</release.plugin.version>
-      <site.plugin.version>2.0.1</site.plugin.version>
-      <surefire.plugin.version>2.4.3</surefire.plugin.version>
-      <surefire.report.plugin.version>2.4.3</surefire.report.plugin.version>
-      <taglist.plugin.version>2.3</taglist.plugin.version>
-      <war.plugin.version>2.1-beta-1</war.plugin.version>
-      -->
    </properties>
 
    <dependencyManagement>
