@@ -123,7 +123,11 @@
       <maven.test.failure.ignore>false</maven.test.failure.ignore>
       <surefire.useFile>true</surefire.useFile>
       <exo.test.includes>Test*</exo.test.includes>
-
+      <!-- maven-clover2-plugin -->
+      <!-- where snapshots are stored to use clover optimization -->
+      <maven.clover.snapshot>${user.home}/.clover/${project.groupId}-${project.artifactId}/clover.snapshot</maven.clover.snapshot>
+      <!-- where historical data are stored -->
+      <maven.clover.historyDir>${user.home}/.clover/${project.groupId}-${project.artifactId}/clover.history</maven.clover.historyDir>
       <!-- Defaut compiler settings -->
       <maven.compiler.optimize>true</maven.compiler.optimize>
       <maven.compiler.source>1.5</maven.compiler.source>
@@ -143,6 +147,7 @@
 
       <!-- Plugins versions are defined in properties to reuse them between build and reporting parts if necessary -->
       <version.animalsniffer.plugin>1.2</version.animalsniffer.plugin>
+      <version.clover2.plugin>2.6.3</version.clover2.plugin>
       <jibx.plugin.version>1.2.1</jibx.plugin.version>
       <javacc.plugin.version>2.5</javacc.plugin.version>
       <jaxb2.plugin.version>0.1</jaxb2.plugin.version>
@@ -169,6 +174,11 @@
                <artifactId>animal-sniffer</artifactId>
                <version>${version.animalsniffer.plugin}</version>
             </plugin>         
+            <plugin>
+               <groupId>com.atlassian.maven.plugins</groupId>
+               <artifactId>maven-clover2-plugin</artifactId>
+               <version>${version.clover2.plugin}</version>
+            </plugin>
             <plugin>
                <groupId>org.jibx</groupId>
                <artifactId>maven-jibx-plugin</artifactId>
