@@ -18,6 +18,7 @@
     02110-1301 USA, or see the FSF site: http://www.fsf.org.
 
 -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
    <parent>
@@ -36,7 +37,7 @@
       <name>eXo Platform SAS</name>
       <url>http://www.exoplatform.com</url>
    </organization>
-   
+
    <licenses>
       <license>
          <name>LGPL, version 2.1</name>
@@ -106,13 +107,13 @@
       <exo.projects.directory.working>${exo.projects.directory.base}/exo-working</exo.projects.directory.working>
 
       <exo.projects.app.mvn.repo>${exo.projects.directory.dependencies}/repository</exo.projects.app.mvn.repo>
-      
+
       <exo.projects.app.tomcat.version>tomcat-6.0.16</exo.projects.app.tomcat.version>
       <exo.projects.app.jboss.version>jboss-4.2.3.GA</exo.projects.app.jboss.version>
       <exo.projects.app.jonas.version>JONAS_4_8_5</exo.projects.app.jonas.version>
-      
+
       <exo.dev.resources.version>1.2.0</exo.dev.resources.version>
-   
+
       <exo.product.name>eXo Platform</exo.product.name>
       <exo.product.specification>N/A</exo.product.specification>
 
@@ -122,17 +123,17 @@
       <maven.test.failure.ignore>false</maven.test.failure.ignore>
       <surefire.useFile>true</surefire.useFile>
       <exo.test.includes>Test*</exo.test.includes>
-      
+
       <!-- Defaut compiler settings -->
       <maven.compiler.optimize>true</maven.compiler.optimize>
       <maven.compiler.source>1.5</maven.compiler.source>
       <maven.compiler.target>1.5</maven.compiler.target>
-      
+
       <!-- Encoding used for files in the project -->
       <!-- Standard property supported by many plugins : compiler, resources, ... -->
       <!-- Will be an entry in the POM in the future -->
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      
+
       <!-- Plugins versions are defined in propertiesto reuse them between build and reporting parts if necessary -->
       <assembly.plugin.version>2.2-beta-4</assembly.plugin.version>
       <buildnumber.plugin.version>1.0-beta-3</buildnumber.plugin.version>
@@ -200,7 +201,7 @@
                   <configuration>
                      <source>${maven.compiler.source}</source>
                      <target>${maven.compiler.target}</target>
-                  </configuration>               
+                  </configuration>
                   <archive>
                      <!-- Manifest management -->
                      <manifestEntries>
@@ -224,7 +225,7 @@
                <configuration>
                   <useReleaseProfile>false</useReleaseProfile>
                   <arguments>-Prelease -Dmaven.test.skip=true</arguments>
-                  <autoVersionSubmodules>true</autoVersionSubmodules>          
+                  <autoVersionSubmodules>true</autoVersionSubmodules>
                </configuration>
             </plugin>
             <plugin>
@@ -235,7 +236,7 @@
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-source-plugin</artifactId>
-               <!-- Version from JBoss -->            
+               <!-- Version from JBoss -->
                <configuration>
                   <!-- This is a workaroud for MSOURCES-44 -->
                   <includePom>true</includePom>
@@ -290,29 +291,29 @@
                <version>${jaxb2.plugin.version}</version>
             </plugin>
             <plugin>
-            	<groupId>org.apache.maven.plugins</groupId>
-            	<artifactId>maven-checkstyle-plugin</artifactId>
-            	<version>${checkstyle.plugin.version}</version>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-checkstyle-plugin</artifactId>
+               <version>${checkstyle.plugin.version}</version>
             </plugin>
             <plugin>
-            	<groupId>org.apache.maven.plugins</groupId>
-            	<artifactId>maven-javadoc-plugin</artifactId>
-            	<version>${javadoc.plugin.version}</version>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-javadoc-plugin</artifactId>
+               <version>${javadoc.plugin.version}</version>
             </plugin>
             <plugin>
-            	<groupId>org.codehaus.mojo</groupId>
-            	<artifactId>taglist-maven-plugin</artifactId>
-            	<version>${taglist.plugin.version}</version>
+               <groupId>org.codehaus.mojo</groupId>
+               <artifactId>taglist-maven-plugin</artifactId>
+               <version>${taglist.plugin.version}</version>
             </plugin>
             <plugin>
-            	<groupId>org.apache.maven.plugins</groupId>
-            	<artifactId>maven-ear-plugin</artifactId>
-            	<version>${ear.plugin.version}</version>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-ear-plugin</artifactId>
+               <version>${ear.plugin.version}</version>
             </plugin>
             <plugin>
-            	<groupId>org.apache.maven.plugins</groupId>
-            	<artifactId>maven-assembly-plugin</artifactId>
-            	<version>${assembly.plugin.version}</version>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-assembly-plugin</artifactId>
+               <version>${assembly.plugin.version}</version>
             </plugin>
          </plugins>
       </pluginManagement>
@@ -348,274 +349,295 @@
             <version>${taglist.plugin.version}</version>
          </plugin>
       </plugins>
-   </reporting>   
+   </reporting>
 
    <profiles>
-   <profile>
-      <id>checkstyle</id>
-      <build>
-         <plugins>
-            <plugin>
-               <groupId>org.apache.maven.plugins</groupId>
-               <artifactId>maven-checkstyle-plugin</artifactId>
-               <version>${checkstyle.plugin.version}</version>
-               <dependencies>
-                  <dependency>
-                     <groupId>org.exoplatform.tool</groupId>
-                     <artifactId>dev-resources</artifactId>
-                     <version>${exo.dev.resources.version}</version>
-                  </dependency>
-               </dependencies>
-               <executions>
-                  <execution>
-                     <phase>verify</phase>
-                     <goals>
-                        <goal>check</goal>
-                     </goals>
-                  </execution>
-               </executions>
-            </plugin>
-         </plugins>
-      </build>
-      <reporting>
-         <plugins>
-            <plugin>
-               <groupId>org.apache.maven.plugins</groupId>
-               <artifactId>maven-checkstyle-plugin</artifactId>
-               <version>${checkstyle.plugin.version}</version>
-               <configuration>
-                  <violationSeverity>warning</violationSeverity>
-                  <configLocation>checkstyle/codestyle.xml</configLocation>
-                  <headerLocation>checkstyle/java.header</headerLocation>
-               </configuration>
-            </plugin>
-         </plugins>
-      </reporting>
-   </profile>
-   <profile>
-      <id>release</id>
-      <build>
-         <pluginManagement>
-            <plugins>
-               <!-- Manifest management -->
-               <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-war-plugin</artifactId>
-                  <configuration>
-                     <archive>
-                        <manifestEntries>
-                           <SCM-Revision>${buildNumber}</SCM-Revision>
-                           <SCM-URL>${project.scm.connection}</SCM-URL>
-                           <Specification-Title>${exo.product.name}</Specification-Title>
-                           <Specification-Version>${exo.product.specification}</Specification-Version>
-                           <Specification-Vendor>${project.organization.name}</Specification-Vendor>
-                           <Implementation-Title>${project.name}</Implementation-Title>
-                           <Implementation-Version>${project.version}</Implementation-Version>
-                           <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
-                        </manifestEntries>
-                     </archive>
-                  </configuration>
-               </plugin>
-
-               <!-- Manifest management -->
-               <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-jar-plugin</artifactId>
-                  <configuration>
-                     <archive>
-                        <manifestEntries>
-                           <SCM-Revision>${buildNumber}</SCM-Revision>
-                           <SCM-URL>${project.scm.connection}</SCM-URL>
-                           <Specification-Title>${exo.product.name}</Specification-Title>
-                           <Specification-Version>${exo.product.specification}</Specification-Version>
-                           <Specification-Vendor>${project.organization.name}</Specification-Vendor>
-                           <Implementation-Title>${project.name}</Implementation-Title>
-                           <Implementation-Version>${project.version}</Implementation-Version>
-                           <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
-                        </manifestEntries>
-                     </archive>
-                  </configuration>
-               </plugin>
-            </plugins>
-         </pluginManagement>
-         <plugins>
-            <plugin>
-               <groupId>org.codehaus.mojo</groupId>
-               <artifactId>buildnumber-maven-plugin</artifactId>
-               <executions>
-                  <execution>
-                     <phase>validate</phase>
-                     <goals>
-                        <goal>create</goal>
-                     </goals>
-                  </execution>
-               </executions>
-               <configuration>
-                  <doCheck>false</doCheck>
-                  <doUpdate>false</doUpdate>
-               </configuration>
-            </plugin>
-         </plugins>
-      </build>
-   </profile>
-   <profile>
-      <id>tomcat-server</id>
-      <activation>
-         <property>
-            <name>tomcat</name>
-         </property>
-         <activeByDefault>false</activeByDefault>
-      </activation>
-   </profile>
-   <profile>
-      <id>jboss-server</id>
-      <activation>
-         <property>
-            <name>jboss-server</name>
-         </property>
-         <activeByDefault>false</activeByDefault>
-      </activation>
-   </profile>
-   <profile>
-      <id>jonas-server</id>
-      <activation>
-         <property>
-            <name>jonas-server</name>
-         </property>
-         <activeByDefault>false</activeByDefault>
-      </activation>
-   </profile>
-   <profile>
-      <id>jmeter-perftest</id>
-      <activation>
-         <property>
-            <name>jmeter-perftest</name>
-         </property>
-         <activeByDefault>false</activeByDefault>
-      </activation>
-   </profile>
-
-   <!-- Tests coverage with emma -->
-   <profile>
-      <id>emma</id>
-      <properties>
-         <maven.test.failure.ignore>true</maven.test.failure.ignore>
-      </properties>
-      <build>
-         <pluginManagement>
+      <profile>
+         <id>checkstyle</id>
+         <build>
             <plugins>
                <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-surefire-plugin</artifactId>
+                  <artifactId>maven-checkstyle-plugin</artifactId>
+                  <version>${checkstyle.plugin.version}</version>
+                  <dependencies>
+                     <dependency>
+                        <groupId>org.exoplatform.tool</groupId>
+                        <artifactId>dev-resources</artifactId>
+                        <version>${exo.dev.resources.version}</version>
+                     </dependency>
+                  </dependencies>
+                  <executions>
+                     <execution>
+                        <phase>verify</phase>
+                        <goals>
+                           <goal>check</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+               </plugin>
+            </plugins>
+         </build>
+         <reporting>
+            <plugins>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-checkstyle-plugin</artifactId>
+                  <version>${checkstyle.plugin.version}</version>
                   <configuration>
-                     <systemProperties>
-                        <property>
-                           <name>emma.coverage.out.file</name>
-                           <value>target/emma/coverage.ec</value>
-                        </property>
-                     </systemProperties>
+                     <violationSeverity>warning</violationSeverity>
+                     <configLocation>checkstyle/codestyle.xml</configLocation>
+                     <headerLocation>checkstyle/java.header</headerLocation>
                   </configuration>
                </plugin>
             </plugins>
-         </pluginManagement>
-         <plugins>
-            <plugin>
-               <artifactId>maven-antrun-plugin</artifactId>
-               <executions>
-                  <execution>
-                     <id>emma1</id>
-                     <phase>test-compile</phase>
+         </reporting>
+      </profile>
+      <profile>
+         <id>release</id>
+         <build>
+            <pluginManagement>
+               <plugins>
+                  <!-- Manifest management -->
+                  <plugin>
+                     <groupId>org.apache.maven.plugins</groupId>
+                     <artifactId>maven-war-plugin</artifactId>
                      <configuration>
-                        <tasks if="emma.run">
-                           <echo message="[EMMA] Start classes instrumentation ..." />
-                           <taskdef resource="emma_ant.properties" classpathref="maven.dependency.classpath" />
-                           <mkdir dir="target" />
-                           <mkdir dir="target/classes" />
-                           <mkdir dir="target/emma/classes" />
-                           <!-- Do nothing if the directory already exist-->
-                           <copy todir="target/emma/classes" verbose="false" overwrite="true">
-                              <fileset dir="target/classes" />
-                           </copy>
-                           <emma enabled="true">
-                              <instr mode="overwrite" metadatafile="target/emma/metadata.em">
-                                 <filter excludes="*.xml.*" />
-                                 <filter excludes="*JiBX*" />
-                                 <filter excludes="*Entry*" />
-                                 <filter excludes="*Value*" />
-                                 <filter excludes="*RepositoryServiceConfiguration*" />
-                                 <filter excludes="*.query*" />
+                        <archive>
+                           <manifestEntries>
+                              <SCM-Revision>${buildNumber}</SCM-Revision>
+                              <SCM-URL>${project.scm.connection}</SCM-URL>
+                              <Specification-Title>${exo.product.name}</Specification-Title>
+                              <Specification-Version>${exo.product.specification}</Specification-Version>
+                              <Specification-Vendor>${project.organization.name}</Specification-Vendor>
+                              <Implementation-Title>${project.name}</Implementation-Title>
+                              <Implementation-Version>${project.version}</Implementation-Version>
+                              <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+                           </manifestEntries>
+                        </archive>
+                     </configuration>
+                  </plugin>
 
-                                 <instrpath>
-                                    <dirset dir="target">
-                                       <include name="emma/classes" />
-                                    </dirset>
-                                 </instrpath>
-                              </instr>
-                           </emma>
-                        </tasks>
-                     </configuration>
-                     <goals>
-                        <goal>run</goal>
-                     </goals>
-                  </execution>
-                  <execution>
-                     <id>emma2</id>
-                     <phase>test</phase>
+                  <!-- Manifest management -->
+                  <plugin>
+                     <groupId>org.apache.maven.plugins</groupId>
+                     <artifactId>maven-jar-plugin</artifactId>
                      <configuration>
-                        <tasks if="emma.run">
-                           <echo message="[EMMA] Start report generation..." />
-                           <taskdef resource="emma_ant.properties" classpathref="maven.dependency.classpath" />
-                           <emma enabled="true">
-                              <!-- merged file will be rewritted by last project -->
-                              <merge outfile="target/coverage.es">
-                                 <fileset dir=".">
-                                    <include name="**/target/emma/*.e*" />
-                                    <include name="**/target/emma/*.e*" />
-                                 </fileset>
-                              </merge>
-                              <report>
-                                 <sourcepath>
-                                    <dirset dir=".">
-                                       <include name="**/src/**/java" />
-                                    </dirset>
-                                 </sourcepath>
-                                 <fileset dir="target/">
-                                    <include name="*.es" />
-                                 </fileset>
-                                 <html outfile="target/coverage.html" />
-                                 <xml outfile="target/coverage.xml" />
-                              </report>
-                           </emma>
-                        </tasks>
+                        <archive>
+                           <manifestEntries>
+                              <SCM-Revision>${buildNumber}</SCM-Revision>
+                              <SCM-URL>${project.scm.connection}</SCM-URL>
+                              <Specification-Title>${exo.product.name}</Specification-Title>
+                              <Specification-Version>${exo.product.specification}</Specification-Version>
+                              <Specification-Vendor>${project.organization.name}</Specification-Vendor>
+                              <Implementation-Title>${project.name}</Implementation-Title>
+                              <Implementation-Version>${project.version}</Implementation-Version>
+                              <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+                           </manifestEntries>
+                        </archive>
                      </configuration>
-                     <goals>
-                        <goal>run</goal>
-                     </goals>
-                  </execution>
-               </executions>
-               <dependencies>
-                  <dependency>
-                     <groupId>emma</groupId>
-                     <artifactId>emma</artifactId>
-                     <version>2.0.5312</version>
-                  </dependency>
-                  <dependency>
-                     <groupId>emma</groupId>
-                     <artifactId>emma_ant</artifactId>
-                     <version>2.0.5312</version>
-                  </dependency>
-               </dependencies>
-            </plugin>
-         </plugins>
-      </build>
-      <dependencies>
-         <dependency>
-            <groupId>emma</groupId>
-            <artifactId>emma</artifactId>
-            <version>2.0.5312</version>
-            <scope>test</scope>
-         </dependency>
-      </dependencies>
-   </profile>
-</profiles>
+                  </plugin>
+               </plugins>
+            </pluginManagement>
+            <plugins>
+               <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>buildnumber-maven-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <phase>validate</phase>
+                        <goals>
+                           <goal>create</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+                  <configuration>
+                     <doCheck>false</doCheck>
+                     <doUpdate>false</doUpdate>
+                  </configuration>
+               </plugin>
+               <plugin>
+                  <groupId>org.jvnet</groupId>
+                  <artifactId>animal-sniffer</artifactId>
+                  <version>1.2</version>
+                  <executions>
+                     <execution>
+                        <id>check-java-compatibility</id>
+                        <phase>compile</phase>
+                        <goals>
+                           <goal>check</goal>
+                        </goals>
+                        <configuration>
+                           <signature>
+                              <groupId>org.jvnet.animal-sniffer</groupId>
+                              <artifactId>java1.5</artifactId>
+                              <version>1.0</version>
+                           </signature>
+                        </configuration>
+                     </execution>
+                  </executions>
+               </plugin>
+            </plugins>
+         </build>
+      </profile>
+      <profile>
+         <id>tomcat-server</id>
+         <activation>
+            <property>
+               <name>tomcat</name>
+            </property>
+            <activeByDefault>false</activeByDefault>
+         </activation>
+      </profile>
+      <profile>
+         <id>jboss-server</id>
+         <activation>
+            <property>
+               <name>jboss-server</name>
+            </property>
+            <activeByDefault>false</activeByDefault>
+         </activation>
+      </profile>
+      <profile>
+         <id>jonas-server</id>
+         <activation>
+            <property>
+               <name>jonas-server</name>
+            </property>
+            <activeByDefault>false</activeByDefault>
+         </activation>
+      </profile>
+      <profile>
+         <id>jmeter-perftest</id>
+         <activation>
+            <property>
+               <name>jmeter-perftest</name>
+            </property>
+            <activeByDefault>false</activeByDefault>
+         </activation>
+      </profile>
+
+      <!-- Tests coverage with emma -->
+      <profile>
+         <id>emma</id>
+         <properties>
+            <maven.test.failure.ignore>true</maven.test.failure.ignore>
+         </properties>
+         <build>
+            <pluginManagement>
+               <plugins>
+                  <plugin>
+                     <groupId>org.apache.maven.plugins</groupId>
+                     <artifactId>maven-surefire-plugin</artifactId>
+                     <configuration>
+                        <systemProperties>
+                           <property>
+                              <name>emma.coverage.out.file</name>
+                              <value>target/emma/coverage.ec</value>
+                           </property>
+                        </systemProperties>
+                     </configuration>
+                  </plugin>
+               </plugins>
+            </pluginManagement>
+            <plugins>
+               <plugin>
+                  <artifactId>maven-antrun-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <id>emma1</id>
+                        <phase>test-compile</phase>
+                        <configuration>
+                           <tasks if="emma.run">
+                              <echo message="[EMMA] Start classes instrumentation ..." />
+                              <taskdef resource="emma_ant.properties" classpathref="maven.dependency.classpath" />
+                              <mkdir dir="target" />
+                              <mkdir dir="target/classes" />
+                              <mkdir dir="target/emma/classes" />
+                              <!-- Do nothing if the directory already exist-->
+                              <copy todir="target/emma/classes" verbose="false" overwrite="true">
+                                 <fileset dir="target/classes" />
+                              </copy>
+                              <emma enabled="true">
+                                 <instr mode="overwrite" metadatafile="target/emma/metadata.em">
+                                    <filter excludes="*.xml.*" />
+                                    <filter excludes="*JiBX*" />
+                                    <filter excludes="*Entry*" />
+                                    <filter excludes="*Value*" />
+                                    <filter excludes="*RepositoryServiceConfiguration*" />
+                                    <filter excludes="*.query*" />
+
+                                    <instrpath>
+                                       <dirset dir="target">
+                                          <include name="emma/classes" />
+                                       </dirset>
+                                    </instrpath>
+                                 </instr>
+                              </emma>
+                           </tasks>
+                        </configuration>
+                        <goals>
+                           <goal>run</goal>
+                        </goals>
+                     </execution>
+                     <execution>
+                        <id>emma2</id>
+                        <phase>test</phase>
+                        <configuration>
+                           <tasks if="emma.run">
+                              <echo message="[EMMA] Start report generation..." />
+                              <taskdef resource="emma_ant.properties" classpathref="maven.dependency.classpath" />
+                              <emma enabled="true">
+                                 <!-- merged file will be rewritted by last project -->
+                                 <merge outfile="target/coverage.es">
+                                    <fileset dir=".">
+                                       <include name="**/target/emma/*.e*" />
+                                       <include name="**/target/emma/*.e*" />
+                                    </fileset>
+                                 </merge>
+                                 <report>
+                                    <sourcepath>
+                                       <dirset dir=".">
+                                          <include name="**/src/**/java" />
+                                       </dirset>
+                                    </sourcepath>
+                                    <fileset dir="target/">
+                                       <include name="*.es" />
+                                    </fileset>
+                                    <html outfile="target/coverage.html" />
+                                    <xml outfile="target/coverage.xml" />
+                                 </report>
+                              </emma>
+                           </tasks>
+                        </configuration>
+                        <goals>
+                           <goal>run</goal>
+                        </goals>
+                     </execution>
+                  </executions>
+                  <dependencies>
+                     <dependency>
+                        <groupId>emma</groupId>
+                        <artifactId>emma</artifactId>
+                        <version>2.0.5312</version>
+                     </dependency>
+                     <dependency>
+                        <groupId>emma</groupId>
+                        <artifactId>emma_ant</artifactId>
+                        <version>2.0.5312</version>
+                     </dependency>
+                  </dependencies>
+               </plugin>
+            </plugins>
+         </build>
+         <dependencies>
+            <dependency>
+               <groupId>emma</groupId>
+               <artifactId>emma</artifactId>
+               <version>2.0.5312</version>
+               <scope>test</scope>
+            </dependency>
+         </dependencies>
+      </profile>
+   </profiles>
 </project>
