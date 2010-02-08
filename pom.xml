@@ -24,7 +24,7 @@
    <parent>
       <groupId>org.jboss</groupId>
       <artifactId>jboss-parent</artifactId>
-      <version>5-beta-1</version>
+      <version>5-beta-5</version>
    </parent>
    <groupId>org.exoplatform</groupId>
    <artifactId>foundation-parent</artifactId>
@@ -128,13 +128,17 @@
       <maven.compiler.optimize>true</maven.compiler.optimize>
       <maven.compiler.source>1.5</maven.compiler.source>
       <maven.compiler.target>1.5</maven.compiler.target>
-
+      <!-- maven-enforcer-plugin -->
+      <!-- Java 6 is required to build our projects -->
+      <jdk.min.version>1.6</jdk.min.version>
+      
       <!-- Encoding used for files in the project -->
       <!-- Standard property supported by many plugins : compiler, resources, ... -->
       <!-- Will be an entry in the POM in the future -->
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-      <!-- Plugins versions are defined in propertiesto reuse them between build and reporting parts if necessary -->
+      <!-- Plugins versions are defined in properties to reuse them between build and reporting parts if necessary -->
+      <animalsniffer.plugin.version>1.2</animalsniffer.plugin.version>
       <assembly.plugin.version>2.2-beta-4</assembly.plugin.version>
       <buildnumber.plugin.version>1.0-beta-3</buildnumber.plugin.version>
       <clean.plugin.version>2.3</clean.plugin.version>
@@ -172,6 +176,11 @@
       <defaultGoal>install</defaultGoal>
       <pluginManagement>
          <plugins>
+            <plugin>
+               <groupId>org.jvnet</groupId>
+               <artifactId>animal-sniffer</artifactId>
+               <version>${animalsniffer.plugin.version}</version>
+            </plugin>         
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-clean-plugin</artifactId>
@@ -459,7 +468,6 @@
                <plugin>
                   <groupId>org.jvnet</groupId>
                   <artifactId>animal-sniffer</artifactId>
-                  <version>1.2</version>
                   <executions>
                      <execution>
                         <id>check-java-compatibility</id>
