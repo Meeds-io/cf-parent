@@ -148,9 +148,9 @@
       <!-- Plugins versions are defined in properties to reuse them between build and reporting parts if necessary -->
       <version.animalsniffer.plugin>1.2</version.animalsniffer.plugin>
       <version.clover2.plugin>2.6.3</version.clover2.plugin>
-      <jibx.plugin.version>1.2.1</jibx.plugin.version>
-      <javacc.plugin.version>2.5</javacc.plugin.version>
-      <jaxb2.plugin.version>0.1</jaxb2.plugin.version>
+      <version.jibx.plugin>1.2.1</version.jibx.plugin>
+      <version.javacc.plugin>2.5</version.javacc.plugin>
+      <version.jaxb2.plugin>0.1</version.jaxb2.plugin>
 
    </properties>
 
@@ -182,7 +182,7 @@
             <plugin>
                <groupId>org.jibx</groupId>
                <artifactId>maven-jibx-plugin</artifactId>
-               <version>${jibx.plugin.version}</version>
+               <version>${version.jibx.plugin}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
@@ -204,12 +204,12 @@
             <plugin>
                <groupId>org.codehaus.mojo</groupId>
                <artifactId>javacc-maven-plugin</artifactId>
-               <version>${javacc.plugin.version}</version>
+               <version>${version.javacc.plugin}</version>
             </plugin>
             <plugin>
                <groupId>org.jvnet.jaxb2.maven2</groupId>
                <artifactId>maven-jaxb2-plugin</artifactId>
-               <version>${jaxb2.plugin.version}</version>
+               <version>${version.jaxb2.plugin}</version>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
@@ -247,12 +247,12 @@
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-project-info-reports-plugin</artifactId>
-            <version>${project.info.reports.plugin.version}</version>
+            <version>${version.pir.plugin}</version>
          </plugin>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-javadoc-plugin</artifactId>
-            <version>${javadoc.plugin.version}</version>
+            <version>${version.javadoc.plugin}</version>
             <configuration>
                <aggregate>true</aggregate>
                <reportOutputDirectory>${project.build.directory}/javadoc</reportOutputDirectory>
@@ -263,12 +263,12 @@
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-report-plugin</artifactId>
-            <version>${surefire.report.plugin.version}</version>
+            <version>${version.surefire.plugin}</version>
          </plugin>
          <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>taglist-maven-plugin</artifactId>
-            <version>${taglist.plugin.version}</version>
+            <version>${version.taglist.plugin}</version>
          </plugin>
       </plugins>
    </reporting>
@@ -281,7 +281,7 @@
                <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
                   <artifactId>maven-checkstyle-plugin</artifactId>
-                  <version>${checkstyle.plugin.version}</version>
+                  <version>${version.checkstyle.plugin}</version>
                   <dependencies>
                      <dependency>
                         <groupId>org.exoplatform.tool</groupId>
@@ -305,7 +305,7 @@
                <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
                   <artifactId>maven-checkstyle-plugin</artifactId>
-                  <version>${checkstyle.plugin.version}</version>
+                  <version>${version.checkstyle.plugin}</version>
                   <configuration>
                      <violationSeverity>warning</violationSeverity>
                      <configLocation>checkstyle/codestyle.xml</configLocation>
