@@ -122,7 +122,6 @@
       <forkMode>once</forkMode>
       <maven.test.failure.ignore>false</maven.test.failure.ignore>
       <surefire.useFile>true</surefire.useFile>
-      <exo.test.includes>Test*</exo.test.includes>
       <!-- maven-clover2-plugin -->
       <!-- where snapshots are stored to use clover optimization -->
       <maven.clover.snapshot>${user.home}/.clover/${project.groupId}-${project.artifactId}/clover.snapshot</maven.clover.snapshot>
@@ -210,15 +209,6 @@
                <groupId>org.jvnet.jaxb2.maven2</groupId>
                <artifactId>maven-jaxb2-plugin</artifactId>
                <version>${version.jaxb2.plugin}</version>
-            </plugin>
-            <plugin>
-               <groupId>org.apache.maven.plugins</groupId>
-               <artifactId>maven-surefire-plugin</artifactId>
-               <configuration>
-                  <includes>
-                     <include>**/${exo.test.includes}.java</include>
-                  </includes>
-               </configuration>
             </plugin>
             <plugin>
                <groupId>org.apache.maven.plugins</groupId>
