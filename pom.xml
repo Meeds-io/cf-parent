@@ -147,7 +147,7 @@
       <!-- Plugins versions are defined in properties to reuse them between build and reporting parts if necessary -->
       <version.animalsniffer.plugin>1.2</version.animalsniffer.plugin>
       <version.clover2.plugin>2.6.3</version.clover2.plugin>
-      <version.jibx.plugin>1.2.1</version.jibx.plugin>
+      <version.jibx.plugin>1.2.2</version.jibx.plugin>
       <version.javacc.plugin>2.5</version.javacc.plugin>
       <version.jaxb2.plugin>0.1</version.jaxb2.plugin>
 
