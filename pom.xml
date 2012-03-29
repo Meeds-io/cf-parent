@@ -150,7 +150,7 @@
       <version.jibx.plugin>1.2.2</version.jibx.plugin>
       <version.javacc.plugin>2.5</version.javacc.plugin>
       <version.jaxb2.plugin>0.1</version.jaxb2.plugin>
-      <version.surefire.plugin>2.12</version.surefire.plugin>
+      <version.surefire.plugin>2.11</version.surefire.plugin>
 
 
    </properties>
