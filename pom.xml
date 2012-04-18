@@ -151,8 +151,7 @@
       <version.javacc.plugin>2.5</version.javacc.plugin>
       <version.jaxb2.plugin>0.1</version.jaxb2.plugin>
       <version.surefire.plugin>2.11</version.surefire.plugin>
-
-
+      <version.release.plugin>2.2.1</version.release.plugin>
    </properties>
 
    <dependencyManagement>
