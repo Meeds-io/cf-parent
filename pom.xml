@@ -35,13 +35,13 @@
 
    <organization>
       <name>eXo Platform SAS</name>
-      <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
+      <url>http://www.exoplatform.com</url>
    </organization>
 
    <licenses>
       <license>
          <name>LGPL, version 2.1</name>
-         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
+         <url>http://www.opensource.org/licenses/lgpl-license.php</url>
       </license>
    </licenses>
 
@@ -55,49 +55,49 @@
    <repositories>
       <repository>
          <id>repository.jboss.com</id>
-         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
+         <url>http://repository.jboss.com/maven2</url>
       </repository>
       <repository>
          <id>exo-int</id>
          <name>exoplatform.org internal repository</name>
-         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
+         <url>http://maven2.exoplatform.org/rest/maven2</url>
       </repository>
       <repository>
          <id>repo.jfrog.org-releases</id>
          <name>repo.jfrog.org-releases</name>
-         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
+         <url>http://repo.jfrog.org/artifactory/plugins-releases-local</url>
       </repository>
       <repository>
          <id>download.java.net</id>
          <name>download.java.net repository</name>
-         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
+         <url>http://download.java.net/maven/2</url>
       </repository>
    </repositories>
    <pluginRepositories>
       <pluginRepository>
          <id>repository.jboss.com</id>
-         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
+         <url>http://repository.jboss.com/maven2</url>
       </pluginRepository>
       <pluginRepository>
          <id>exo-int</id>
          <name>exoplatform.org internal repository</name>
-         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
+         <url>http://maven2.exoplatform.org/rest/maven2</url>
       </pluginRepository>
       <pluginRepository>
          <id>repo.jfrog.org-releases</id>
          <name>repo.jfrog.org-releases</name>
-         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
+         <url>http://repo.jfrog.org/artifactory/plugins-releases-local</url>
       </pluginRepository>
       <pluginRepository>
          <id>download.java.net</id>
          <name>download.java.net repository</name>
-         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
+         <url>http://download.java.net/maven/2</url>
       </pluginRepository>
       <!-- Used for maven-license-plugin -->
       <pluginRepository>
          <id>mc-release</id>
          <name>Local Maven repository of releases</name>
-         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
+         <url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
       </pluginRepository>
    </pluginRepositories>
 
