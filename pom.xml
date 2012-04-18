@@ -35,69 +35,69 @@
 
    <organization>
       <name>eXo Platform SAS</name>
-      <url>http://www.exoplatform.com</url>
+      <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
    </organization>
 
    <licenses>
       <license>
          <name>LGPL, version 2.1</name>
-         <url>http://www.opensource.org/licenses/lgpl-license.php</url>
+         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
       </license>
    </licenses>
 
    <scm>
-      <connection>scm:svn:http://anonsvn.jboss.org/repos/exo-jcr/parent/trunk</connection>
-      <developerConnection>scm:svn:https://svn.jboss.org/repos/exo-jcr/parent/trunk</developerConnection>
-      <url>http://fisheye.jboss.org/browse/exo-jcr/parent/trunk</url>
+      <connection>scm:git:ssh://github.com/exodev/cf-parent.git</connection>
+      <developerConnection>scm:git:ssh://github.com/exodev/cf-parent.git</developerConnection>
+      <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
    </scm>
 
    <!-- Hudson to parse poms before the build do not use our settings  -->
    <repositories>
       <repository>
          <id>repository.jboss.com</id>
-         <url>http://repository.jboss.com/maven2</url>
+         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
       </repository>
       <repository>
          <id>exo-int</id>
          <name>exoplatform.org internal repository</name>
-         <url>http://maven2.exoplatform.org/rest/maven2</url>
+         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
       </repository>
       <repository>
          <id>repo.jfrog.org-releases</id>
          <name>repo.jfrog.org-releases</name>
-         <url>http://repo.jfrog.org/artifactory/plugins-releases-local</url>
+         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
       </repository>
       <repository>
          <id>download.java.net</id>
          <name>download.java.net repository</name>
-         <url>http://download.java.net/maven/2</url>
+         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
       </repository>
    </repositories>
    <pluginRepositories>
       <pluginRepository>
          <id>repository.jboss.com</id>
-         <url>http://repository.jboss.com/maven2</url>
+         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
       </pluginRepository>
       <pluginRepository>
          <id>exo-int</id>
          <name>exoplatform.org internal repository</name>
-         <url>http://maven2.exoplatform.org/rest/maven2</url>
+         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
       </pluginRepository>
       <pluginRepository>
          <id>repo.jfrog.org-releases</id>
          <name>repo.jfrog.org-releases</name>
-         <url>http://repo.jfrog.org/artifactory/plugins-releases-local</url>
+         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
       </pluginRepository>
       <pluginRepository>
          <id>download.java.net</id>
          <name>download.java.net repository</name>
-         <url>http://download.java.net/maven/2</url>
+         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
       </pluginRepository>
       <!-- Used for maven-license-plugin -->
       <pluginRepository>
          <id>mc-release</id>
          <name>Local Maven repository of releases</name>
-         <url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
+         <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
       </pluginRepository>
    </pluginRepositories>
 
