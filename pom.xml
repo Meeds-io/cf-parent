@@ -46,8 +46,8 @@
    </licenses>
 
    <scm>
-      <connection>scm:git:ssh://github.com/exodev/cf-parent.git</connection>
-      <developerConnection>scm:git:ssh://github.com/exodev/cf-parent.git</developerConnection>
+      <connection>scm:git:git://github.com/exoplatform/cf-parent.git</connection>
+      <developerConnection>scm:git:git@github.com/exoplatform/cf-parent.git</developerConnection>
       <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
    </scm>
 
