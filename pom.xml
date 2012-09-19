@@ -229,6 +229,24 @@
                   </archive>
                </configuration>
             </plugin>
+            <plugin>
+               <artifactId>maven-antrun-plugin</artifactId>
+               <executions>
+                 <execution>
+                    <id>print-current-java-version</id>
+                    <phase>compile</phase>
+                    <configuration>
+                       <target>
+                          <echo>Java Vendor System Prop: ${java.vendor}</echo>
+                          <echo>Java Version System Prop: ${java.version}</echo>
+                       </target>
+                    </configuration>
+                    <goals>
+                       <goal>run</goal>
+                    </goals>
+                 </execution>
+               </executions>
+            </plugin>
          </plugins>
       </pluginManagement>
    </build>
