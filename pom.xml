@@ -233,7 +233,6 @@
                <artifactId>maven-antrun-plugin</artifactId>
                <executions>
                  <execution>
-                    <id>print-current-java-version</id>
                     <phase>compile</phase>
                     <configuration>
                        <target>
