@@ -258,7 +258,7 @@
                      <phase>process-test-resources</phase>
                      <configuration>
                         <tasks>
-                           <mkdir dir="target/java.io.tmpdir"/>
+                           <mkdir dir="${project.build.directory}/java.io.tmpdir"/>
                         </tasks>
                      </configuration>
                      <goals>
@@ -272,7 +272,7 @@
               <artifactId>maven-surefire-plugin</artifactId>
               <configuration>
                   <systemPropertyVariables>
-                     <java.io.tmpdir>target/java.io.tmpdir</java.io.tmpdir>
+                     <java.io.tmpdir>${project.build.directory}/java.io.tmpdir</java.io.tmpdir>
                      <com.arjuna.ats.arjuna.objectstore.objectStoreDir>${project.build.directory}</com.arjuna.ats.arjuna.objectstore.objectStoreDir>
                      <ObjectStoreEnvironmentBean.objectStoreDir>${project.build.directory}</ObjectStoreEnvironmentBean.objectStoreDir>
                   </systemPropertyVariables>
