@@ -51,6 +51,15 @@
       <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
    </scm>
 
+    <developers>
+        <developer>
+            <id>exoplatform.com</id>
+            <name>eXo Platform SAS</name>
+            <organization>eXo Platform SAS</organization>
+            <organizationUrl>http://www.exoplatform.com</organizationUrl>
+        </developer>
+    </developers>
+
    <!-- Hudson to parse poms before the build do not use our settings  -->
    <repositories>
       <repository>
