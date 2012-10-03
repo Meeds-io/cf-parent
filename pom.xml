@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     Copyright (C) 2009 eXo Platform SAS.
@@ -31,7 +32,9 @@
    <version>11-SNAPSHOT</version>
    <packaging>pom</packaging>
 
-   <name>eXo JBoss Parent</name>
+   <name>eXo Core Foundation Parent</name>
+   <url>http://www.jboss.org/exojcr</url>
+   <description>eXo Core Foundation parent pom.</description>
 
    <organization>
       <name>eXo Platform SAS</name>
@@ -198,7 +201,7 @@
                <artifactId>maven-jar-plugin</artifactId>
                <configuration>
                   <archive>
-                     <index>fasle</index>
+                     <index>false</index>
                      <manifestEntries combine.self="override">
                         <Specification-Title>${exo.product.name}</Specification-Title>
                         <Specification-Version>${exo.product.specification}</Specification-Version>
@@ -225,7 +228,7 @@
                <artifactId>maven-war-plugin</artifactId>
                <configuration>
                   <archive>
-                     <index>fasle</index>
+                     <index>false</index>
                      <manifestEntries combine.self="override">
                         <SCM-URL>${project.scm.connection}</SCM-URL>
                         <Specification-Title>${exo.product.name}</Specification-Title>
@@ -367,7 +370,7 @@
                      <artifactId>maven-war-plugin</artifactId>
                      <configuration>
                         <archive>
-                           <index>fasle</index>
+                           <index>false</index>
                            <manifestEntries combine.self="override">
                               <SCM-Revision>${buildNumber}</SCM-Revision>
                               <SCM-URL>${project.scm.connection}</SCM-URL>
@@ -388,7 +391,7 @@
                      <artifactId>maven-jar-plugin</artifactId>
                      <configuration>
                         <archive>
-                           <index>fasle</index>
+                           <index>false</index>
                            <manifestEntries combine.self="override">
                               <SCM-Revision>${buildNumber}</SCM-Revision>
                               <SCM-URL>${project.scm.connection}</SCM-URL>
