@@ -29,7 +29,7 @@
    </parent>
    <groupId>org.exoplatform</groupId>
    <artifactId>foundation-parent</artifactId>
-   <version>11-SNAPSHOT</version>
+   <version>11</version>
    <packaging>pom</packaging>
 
    <name>eXo Core Foundation Parent</name>
@@ -261,7 +261,7 @@
                      <phase>process-test-resources</phase>
                      <configuration>
                         <tasks>
-                           <mkdir dir="${project.build.directory}/java.io.tmpdir"/>
+                           <mkdir dir="${project.build.directory}/java.io.tmpdir" />
                         </tasks>
                      </configuration>
                      <goals>
