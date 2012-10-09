@@ -41,6 +41,15 @@
       <url>http://www.exoplatform.com</url>
    </organization>
 
+   <issueManagement>
+     <system>JIRA</system>
+     <url>https://jira.exoplatform.org/</url>
+   </issueManagement>
+
+   <mailingLists>
+     <mailingList/>
+   </mailingLists>
+
    <licenses>
       <license>
          <name>LGPL, version 2.1</name>
