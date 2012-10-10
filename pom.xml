@@ -29,7 +29,7 @@
    </parent>
    <groupId>org.exoplatform</groupId>
    <artifactId>foundation-parent</artifactId>
-   <version>12-SNAPSHOT</version>
+   <version>12-test</version>
    <packaging>pom</packaging>
 
    <name>eXo Core Foundation Parent</name>
@@ -47,7 +47,7 @@
    </issueManagement>
 
    <mailingLists>
-     <mailingList/>
+     <mailingList />
    </mailingLists>
 
    <licenses>
