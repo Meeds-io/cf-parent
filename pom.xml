@@ -30,7 +30,7 @@
    </parent>
    <groupId>org.exoplatform</groupId>
    <artifactId>foundation-parent</artifactId>
-   <version>14-SNAPSHOT</version>
+   <version>13-SNAPSHOT</version>
    <packaging>pom</packaging>
 
    <name>eXo Core Foundation Parent</name>
@@ -172,7 +172,7 @@
       <version.clover2.plugin>2.6.3</version.clover2.plugin>
       <version.jibx.plugin>1.2.5</version.jibx.plugin>
       <version.javacc.plugin>2.6</version.javacc.plugin>
-      <version.jaxb2.plugin>1.6</version.jaxb2.plugin>
+      <version.jaxb2.plugin>0.1</version.jaxb2.plugin>
       <version.surefire.plugin>2.17</version.surefire.plugin>
       <version.release.plugin>2.5.1</version.release.plugin>
    </properties>
