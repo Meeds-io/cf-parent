@@ -481,6 +481,25 @@
                <plugin>
                  <groupId>org.apache.maven.plugins</groupId>
                  <artifactId>maven-javadoc-plugin</artifactId>
+                 <configuration>
+                   <tags>
+                     <tag>
+                       <name>LevelAPI</name>
+                       <placement>a</placement>
+                       <head>eXo level API</head>
+                     </tag>
+                     <tag>
+                       <name>request</name>
+                       <placement>a</placement>
+                       <head>eXo anchor for generated doc on REST API</head>
+                     </tag>
+                     <tag>
+                       <name>response</name>
+                       <placement>a</placement>
+                       <head>eXo response for generated doc on REST API</head>
+                     </tag>
+                   </tags>
+                 </configuration>
                  <executions>
                    <execution>
                      <id>attach-javadocs</id>
