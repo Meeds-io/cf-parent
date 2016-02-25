@@ -152,8 +152,8 @@
       <maven.clover.historyDir>${user.home}/.clover/${project.groupId}-${project.artifactId}/clover.history</maven.clover.historyDir>
       <!-- Defaut compiler settings -->
       <maven.compiler.optimize>true</maven.compiler.optimize>
-      <maven.compiler.source>1.5</maven.compiler.source>
-      <maven.compiler.target>1.5</maven.compiler.target>
+      <maven.compiler.source>1.8</maven.compiler.source>
+      <maven.compiler.target>1.8</maven.compiler.target>
       <!-- maven-enforcer-plugin -->
       <!-- Java 6 is required to build our projects -->
       <jdk.min.version>1.6</jdk.min.version>
