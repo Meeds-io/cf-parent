@@ -125,6 +125,12 @@
    </pluginRepositories>
 
    <properties>
+      <!-- ***************** -->
+      <!-- RELEASE-109: Repository Deployment URLs to eXo Nexus -->
+      <!-- ***************** -->
+      <jboss.releases.repo.url>http://repository.exoplatform.org/service/local/staging/deploy/maven2/</jboss.releases.repo.url>
+      <jboss.snapshots.repo.url>http://repository.exoplatform.org/content/repositories/exo-snapshots/</jboss.snapshots.repo.url>
+
       <exo.projects.directory.base>D:/java</exo.projects.directory.base>
       <exo.projects.directory.dependencies>${exo.projects.directory.base}/exo-dependencies</exo.projects.directory.dependencies>
       <exo.projects.directory.working>${exo.projects.directory.base}/exo-working</exo.projects.directory.working>
