@@ -124,7 +124,12 @@
       <autoVersionSubmodules>true</autoVersionSubmodules>
 
       <!-- Plugins versions are defined in properties to reuse them between build and reporting parts if necessary -->
-      <version.animalsniffer.plugin>1.2</version.animalsniffer.plugin>
+      <version.animalsniffer.plugin>1.4.1</version.animalsniffer.plugin>
+      <!-- PAR-365: Java 8 Support -->
+      <!-- To configure animal-sniffer to check API compat -->
+      <animal-sniffer.signature.groupId>org.codehaus.mojo.signature</animal-sniffer.signature.groupId>
+      <animal-sniffer.signature.artifactId>java18</animal-sniffer.signature.artifactId>
+      <animal-sniffer.signature.version>1.0</animal-sniffer.signature.version>
       <version.clover2.plugin>2.6.3</version.clover2.plugin>
       <version.jibx.plugin>1.2.5</version.jibx.plugin>
       <version.javacc.plugin>2.6</version.javacc.plugin>
@@ -398,12 +403,12 @@
                      <dependency>
                          <groupId>org.codehaus.mojo</groupId>
                          <artifactId>animal-sniffer-enforcer-rule</artifactId>
-                         <version>1.5</version>
+                         <version>1.15</version>
                      </dependency>
                  </dependencies>
                  <executions>
                    <execution>
-                     <id>check-java15</id>
+                     <id>check-java18</id>
                      <goals>
                        <goal>enforce</goal>
                      </goals>
@@ -411,9 +416,9 @@
                        <rules>
                          <checkSignatureRule implementation="org.codehaus.mojo.animal_sniffer.enforcer.CheckSignatureRule">
                            <signature>
-                             <groupId>org.codehaus.mojo.signature</groupId>
-                             <artifactId>java15</artifactId>
-                             <version>1.0</version>
+                             <groupId>${animal-sniffer.signature.groupId}</groupId>
+                             <artifactId>${animal-sniffer.signature.artifactId}</artifactId>
+                             <version>${animal-sniffer.signature.version}</version>
                            </signature>
                            <ignoreDependencies>true</ignoreDependencies>
                          </checkSignatureRule>
