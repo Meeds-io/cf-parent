@@ -136,6 +136,17 @@
       <version.jaxb2.plugin>0.1</version.jaxb2.plugin>
       <version.surefire.plugin>2.17</version.surefire.plugin>
       <version.release.plugin>2.5.1</version.release.plugin>
+
+      <version.jacoco.plugin>0.7.6.201602180812</version.jacoco.plugin>
+      <!-- The Sonar Jacoco Listener for JUnit to extract coverage details per test -->
+      <sonar-jacoco-listeners.version>2.5</sonar-jacoco-listeners.version>
+      <!-- The listener used to compute coverage per test -->
+      <!-- JUnit : org.sonar.java.jacoco.JUnitListener -->
+      <!-- TestNG : org.sonar.java.jacoco.TestNGListener -->
+      <jacoco.listener>org.sonar.java.jacoco.JUnitListener</jacoco.listener>
+      <!-- Minimal test coverage ratio to reach to make the build pass (from 0.0 to 1.0)
+        We intentionally set it to 100% by default to force all projects to define their own ratio -->
+      <exo.test.coverage.ratio>1.0</exo.test.coverage.ratio>
    </properties>
 
    <dependencyManagement>
@@ -550,127 +561,160 @@
          </activation>
       </profile>
 
-      <!-- Tests coverage with emma -->
-      <profile>
-         <id>emma</id>
-         <properties>
-            <maven.test.failure.ignore>true</maven.test.failure.ignore>
-         </properties>
-         <build>
-            <pluginManagement>
+       <!--
+       This profile executes tests coverage for UTs and ITs with Jacoco.
+       -->
+       <profile>
+           <id>coverage</id>
+           <build>
+               <pluginManagement>
+                   <plugins>
+                       <plugin>
+                           <groupId>org.apache.maven.plugins</groupId>
+                           <artifactId>maven-surefire-plugin</artifactId>
+                           <configuration>
+                               <!-- Specific to generate mapping between tests and covered code -->
+                               <properties>
+                                   <property>
+                                       <name>listener</name>
+                                       <value>${jacoco.listener}</value>
+                                   </property>
+                               </properties>
+                           </configuration>
+                       </plugin>
+                       <plugin>
+                           <groupId>org.apache.maven.plugins</groupId>
+                           <artifactId>maven-failsafe-plugin</artifactId>
+                           <configuration>
+                               <!-- Specific to generate mapping between tests and covered code -->
+                               <properties>
+                                   <property>
+                                       <name>listener</name>
+                                       <value>${jacoco.listener}</value>
+                                   </property>
+                               </properties>
+                               <!-- Let's put failsafe reports with surefire to have access to tests failures/success reports in sonar -->
+                               <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+                           </configuration>
+                       </plugin>
+                   </plugins>
+               </pluginManagement>
                <plugins>
-                  <plugin>
-                     <groupId>org.apache.maven.plugins</groupId>
-                     <artifactId>maven-surefire-plugin</artifactId>
-                     <configuration>
-                        <systemProperties>
-                           <property>
-                              <name>emma.coverage.out.file</name>
-                              <value>target/emma/coverage.ec</value>
-                           </property>
-                        </systemProperties>
-                     </configuration>
-                  </plugin>
-               </plugins>
-            </pluginManagement>
-            <plugins>
-               <plugin>
-                  <artifactId>maven-antrun-plugin</artifactId>
-                  <executions>
-                     <execution>
-                        <id>emma1</id>
-                        <phase>test-compile</phase>
-                        <configuration>
-                           <tasks if="emma.run">
-                              <echo message="[EMMA] Start classes instrumentation ..." />
-                              <taskdef resource="emma_ant.properties" classpathref="maven.dependency.classpath" />
-                              <mkdir dir="target" />
-                              <mkdir dir="target/classes" />
-                              <mkdir dir="target/emma/classes" />
-                              <!-- Do nothing if the directory already exist-->
-                              <copy todir="target/emma/classes" verbose="false" overwrite="true">
-                                 <fileset dir="target/classes" />
-                              </copy>
-                              <emma enabled="true">
-                                 <instr mode="overwrite" metadatafile="target/emma/metadata.em">
-                                    <filter excludes="*.xml.*" />
-                                    <filter excludes="*JiBX*" />
-                                    <filter excludes="*Entry*" />
-                                    <filter excludes="*Value*" />
-                                    <filter excludes="*RepositoryServiceConfiguration*" />
-                                    <filter excludes="*.query*" />
+                   <plugin>
+                       <groupId>org.jacoco</groupId>
+                       <artifactId>jacoco-maven-plugin</artifactId>
+                       <version>${version.jacoco.plugin}</version>
+                       <executions>
+                           <execution>
+                               <id>prepare-ut-agent</id>
+                               <goals>
+                                   <goal>prepare-agent</goal>
+                               </goals>
+                               <configuration>
+                                   <destFile>${sonar.jacoco.reportPath}</destFile>
+                                   <append>true</append>
+                               </configuration>
+                           </execution>
+                           <execution>
+                               <id>prepare-it-agent</id>
+                               <goals>
+                                   <goal>prepare-agent-integration</goal>
+                               </goals>
+                               <configuration>
+                                   <destFile>${sonar.jacoco.itReportPath}</destFile>
+                                   <append>true</append>
+                               </configuration>
+                           </execution>
+                           <execution>
+                               <id>check-coverage</id>
+                               <goals>
+                                   <goal>check</goal>
+                               </goals>
+                               <configuration>
+                                   <rules>
+                                       <rule implementation="org.jacoco.maven.RuleConfiguration">
+                                           <element>BUNDLE</element>
+                                           <limits>
+                                               <limit implementation="org.jacoco.report.check.Limit">
+                                                   <counter>INSTRUCTION</counter>
+                                                   <value>COVEREDRATIO</value>
+                                                   <minimum>${exo.test.coverage.ratio}</minimum>
+                                               </limit>
+                                           </limits>
+                                       </rule>
+                                   </rules>
+                               </configuration>
+                           </execution>
+                           <!-- Ensures that the code coverage report for unit tests is created after unit tests have been run. -->
+                           <execution>
+                               <id>post-unit-test</id>
+                               <phase>test</phase>
+                               <goals>
+                                   <goal>report</goal>
+                               </goals>
+                               <configuration>
+                                   <!-- Sets the path to the file which contains the execution data. -->
+                                   <dataFile>${sonar.jacoco.reportPath}</dataFile>
+                                   <!-- Sets the output directory for the code coverage report. -->
+                                   <outputDirectory>${project.reporting.outputDirectory}/test-coverage-ut</outputDirectory>
+                               </configuration>
+                           </execution>
+                           <!-- Ensures that the code coverage report for integration tests after integration tests have been run. -->
+                           <execution>
+                               <id>post-integration-test</id>
+                               <phase>post-integration-test</phase>
+                               <goals>
+                                   <goal>report</goal>
+                               </goals>
+                               <configuration>
+                                   <!-- Sets the path to the file which contains the execution data. -->
+                                   <dataFile>${sonar.jacoco.itReportPath}</dataFile>
+                                   <!-- Sets the output directory for the code coverage report. -->
+                                   <outputDirectory>${project.reporting.outputDirectory}/test-coverage-it</outputDirectory>
+                               </configuration>
+                           </execution>
 
-                                    <instrpath>
-                                       <dirset dir="target">
-                                          <include name="emma/classes" />
-                                       </dirset>
-                                    </instrpath>
-                                 </instr>
-                              </emma>
-                           </tasks>
-                        </configuration>
-                        <goals>
-                           <goal>run</goal>
-                        </goals>
-                     </execution>
-                     <execution>
-                        <id>emma2</id>
-                        <phase>test</phase>
-                        <configuration>
-                           <tasks if="emma.run">
-                              <echo message="[EMMA] Start report generation..." />
-                              <taskdef resource="emma_ant.properties" classpathref="maven.dependency.classpath" />
-                              <emma enabled="true">
-                                 <!-- merged file will be rewritted by last project -->
-                                 <merge outfile="target/coverage.es">
-                                    <fileset dir=".">
-                                       <include name="**/target/emma/*.e*" />
-                                       <include name="**/target/emma/*.e*" />
-                                    </fileset>
-                                 </merge>
-                                 <report>
-                                    <sourcepath>
-                                       <dirset dir=".">
-                                          <include name="**/src/**/java" />
-                                       </dirset>
-                                    </sourcepath>
-                                    <fileset dir="target/">
-                                       <include name="*.es" />
-                                    </fileset>
-                                    <html outfile="target/coverage.html" />
-                                    <xml outfile="target/coverage.xml" />
-                                 </report>
-                              </emma>
-                           </tasks>
-                        </configuration>
-                        <goals>
-                           <goal>run</goal>
-                        </goals>
-                     </execution>
-                  </executions>
-                  <dependencies>
-                     <dependency>
-                        <groupId>emma</groupId>
-                        <artifactId>emma</artifactId>
-                        <version>2.0.5312</version>
-                     </dependency>
-                     <dependency>
-                        <groupId>emma</groupId>
-                        <artifactId>emma_ant</artifactId>
-                        <version>2.0.5312</version>
-                     </dependency>
-                  </dependencies>
-               </plugin>
-            </plugins>
-         </build>
-         <dependencies>
-            <dependency>
-               <groupId>emma</groupId>
-               <artifactId>emma</artifactId>
-               <version>2.0.5312</version>
-               <scope>test</scope>
-            </dependency>
-         </dependencies>
-      </profile>
+                       </executions>
+                   </plugin>
+               </plugins>
+           </build>
+           <dependencies>
+               <dependency>
+                   <groupId>org.codehaus.sonar-plugins.java</groupId>
+                   <artifactId>sonar-jacoco-listeners</artifactId>
+                   <version>${sonar-jacoco-listeners.version}</version>
+                   <scope>test</scope>
+               </dependency>
+           </dependencies>
+           <reporting>
+               <plugins>
+                   <plugin>
+                       <groupId>org.jacoco</groupId>
+                       <artifactId>jacoco-maven-plugin</artifactId>
+                       <version>${version.jacoco.plugin}</version>
+                       <reportSets>
+                           <reportSet>
+                               <id>default-report</id>
+                               <reports>
+                                   <report>report</report>
+                               </reports>
+                               <configuration>
+                                   <dataFile>${sonar.jacoco.reportPath}</dataFile>
+                               </configuration>
+                           </reportSet>
+                           <reportSet>
+                               <id>default-report-integration</id>
+                               <reports>
+                                   <report>report-integration</report>
+                               </reports>
+                               <configuration>
+                                   <dataFile>${sonar.jacoco.itReportPath}</dataFile>
+                               </configuration>
+                           </reportSet>
+                       </reportSets>
+                   </plugin>
+               </plugins>
+           </reporting>
+       </profile>
    </profiles>
 </project>
