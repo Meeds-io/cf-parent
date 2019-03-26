@@ -30,7 +30,7 @@
    </parent>
    <groupId>org.exoplatform</groupId>
    <artifactId>foundation-parent</artifactId>
-   <version>18-SNAPSHOT</version>
+   <version>18</version>
    <packaging>pom</packaging>
 
    <name>eXo Core Foundation Parent</name>
@@ -62,7 +62,7 @@
       <connection>scm:git:git://github.com/exoplatform/cf-parent.git</connection>
       <developerConnection>scm:git:git@github.com:exoplatform/cf-parent.git</developerConnection>
       <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
-     <tag>HEAD</tag>
+     <tag>18</tag>
   </scm>
 
     <developers>
