@@ -27,7 +27,7 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
    </parent>
    <groupId>org.exoplatform</groupId>
    <artifactId>foundation-parent</artifactId>
-   <version>21-SNAPSHOT</version>
+   <version>21-RC01</version>
    <packaging>pom</packaging>
 
    <name>eXo Core Foundation Parent</name>
@@ -59,7 +59,7 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
       <connection>scm:git:git://github.com/exoplatform/cf-parent.git</connection>
       <developerConnection>scm:git:git@github.com:exoplatform/cf-parent.git</developerConnection>
       <url>http://fisheye.jboss.org/browse/exo-jcr/parent</url>
-     <tag>HEAD</tag>
+     <tag>21-RC01</tag>
   </scm>
 
     <developers>
