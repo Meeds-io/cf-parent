@@ -27,7 +27,7 @@ Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
    </parent>
    <groupId>org.exoplatform</groupId>
    <artifactId>foundation-parent</artifactId>
-   <version>21-SNAPSHOT</version>
+   <version>22-SNAPSHOT</version>
    <packaging>pom</packaging>
 
    <name>eXo Core Foundation Parent</name>
